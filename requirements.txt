@@ -1,3 +1,6 @@
 pulp
 jupyter
 ipykernel
+numpy
+pandas
+matplotlib
