@@ -1,0 +1,77 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{geometry}
+
+\usepackage[
+    backend=biber,
+    style=abnt
+]{biblatex}
+
+\addbibresource{references.bib}
+
+\geometry{
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm
+}
+
+\title{\textbf{Otimização de Contratações Contextuais em Elencos de Futebol}}
+\author{Lucio Vargas de Albuquerque Nunes}
+\date{GCC118 -- Programação Matemática \\ 2026/2}
+
+\begin{document}
+
+\maketitle
+
+\section*{Proposta}
+
+A composição do elenco constitui uma decisão relevante para o desempenho competitivo e financeiro dos clubes, envolvendo a seleção de jogadores sob restrições orçamentárias, regulatórias e de composição da equipe \parencite{pantuso2017}. Uma dificuldade desse processo é que a contribuição de um jogador não depende apenas de seu desempenho individual, mas também de sua compatibilidade com os demais jogadores que compõem a equipe \parencite{jarvandi2013}. Dessa forma, um mesmo atleta pode representar ganhos diferentes quando inserido em equipes distintas.
+
+Este trabalho propõe formular o problema de contratação de jogadores como um problema de otimização combinatória, no qual se busca selecionar um conjunto de contratações que maximize o ganho esperado de desempenho de uma equipe. Abordagens recentes têm utilizado programação inteira para apoiar a composição de elencos considerando simultaneamente aspectos esportivos, táticos e financeiros \parencite{dantas2025}. Em vez de considerar exclusivamente rankings ou atributos individuais, pretende-se avaliar o impacto da contratação sobre o desempenho previsto do elenco resultante.
+
+\section*{Fonte de Dados}
+
+Os dados utilizados serão provenientes principalmente do \textit{FBref}, contendo estatísticas de jogadores e equipes da \textit{Premier League} e da \textit{Serie A}, considerando as temporadas de 2019--2020 a 2023--2024.
+
+A base contém atributos relacionados ao desempenho individual dos jogadores e foi previamente estruturada para representar a composição dos elencos e permitir a estimativa do desempenho coletivo das equipes.
+
+\section*{Modelagem Proposta}
+
+Para cada candidato a contratação, será estimado seu impacto sobre uma determinada equipe a partir da diferença entre o desempenho previsto antes e depois de sua inclusão no elenco.
+
+Seja $g_{ij}$ o ganho associado à contratação do jogador $i$ para ocupar a vaga ou substituir o jogador $j$. Define-se a variável binária:
+
+\[
+x_{ij} =
+\begin{cases}
+1, & \text{se o jogador $i$ for selecionado para a vaga $j$},\\
+0, & \text{caso contrário}.
+\end{cases}
+\]
+
+Como aproximação linear do problema contextual, será considerado inicialmente um ganho $g_{ij}$ previamente estimado para cada possível substituição. Assim, uma formulação inicial considera a função objetivo:
+
+\[
+\max \sum_i \sum_j g_{ij} x_{ij}.
+\]
+
+O modelo deverá considerar restrições relacionadas ao número máximo de contratações, à unicidade na seleção dos jogadores, à composição do elenco por posição e ao orçamento disponível. Como a base utilizada não dispõe de valores reais de transferência para todos os atletas, será empregada uma função sintética de valor de mercado, previamente desenvolvida, que associa a cada jogador um custo estimado principalmente a partir de sua idade e de seus indicadores estatísticos de desempenho recente. Essa escolha é coerente com a literatura econômica do futebol, que identifica fatores como idade e desempenho passado entre os determinantes do valor de mercado dos atletas \parencite{dobson1999,pantuso2017}.
+
+A restrição financeira poderá ser expressa por
+
+\[
+\sum_i \sum_j c_i x_{ij} \leq B,
+\]
+
+em que $c_i$ representa o valor de mercado sintético associado ao jogador $i$ e $B$ representa o orçamento disponível para contratações. Os valores sintéticos serão utilizados exclusivamente como uma aproximação consistente dos custos relativos entre os jogadores, não tendo a pretensão de reproduzir valores reais de transferência.
+
+Inicialmente será desenvolvida uma formulação exata por Programação Linear Inteira para a aproximação linear proposta, a ser avaliada em instâncias de diferentes tamanhos. Posteriormente, será desenvolvida uma abordagem heurística capaz de avaliar diretamente diferentes configurações completas de elenco, permitindo comparar a qualidade das soluções e o custo computacional das abordagens.
+
+Espera-se, dessa forma, obter recomendações de contratação que considerem não apenas a qualidade individual dos jogadores, mas principalmente sua contribuição prevista dentro do contexto específico de cada elenco.
+
+\end{document}
