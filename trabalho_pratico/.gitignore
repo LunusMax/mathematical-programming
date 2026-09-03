@@ -1,0 +1,55 @@
+# Arquivos auxiliares do LaTeX
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+
+# Índices / glossários
+*.idx
+*.ilg
+*.ind
+*.glo
+*.glg
+*.gls
+*.ist
+*.acn
+*.acr
+*.alg
+
+# Beamer / hyperref / outros temporários
+*.brf
+*.dvi
+*.xdv
+*.ps
+
+# latexmk
+*.latexmk
+
+# Diretórios temporários
+_build/
+build/
+out/
+
+# Editor / sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Backup
+*~
+*.bak
+*.swp
+*.swo

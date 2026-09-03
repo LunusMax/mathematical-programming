@@ -6,6 +6,9 @@
 \usepackage{amsmath}
 \usepackage{geometry}
 
+\usepackage{indentfirst}
+\setlength{\parindent}{0.8cm}
+
 \usepackage[
     backend=biber,
     style=abnt
@@ -67,7 +70,6 @@ A restrição financeira poderá ser expressa por
 \[
 \sum_i \sum_j c_i x_{ij} \leq B,
 \]
-
 em que $c_i$ representa o valor de mercado sintético associado ao jogador $i$ e $B$ representa o orçamento disponível para contratações. Os valores sintéticos serão utilizados exclusivamente como uma aproximação consistente dos custos relativos entre os jogadores, não tendo a pretensão de reproduzir valores reais de transferência.
 
 Inicialmente será desenvolvida uma formulação exata por Programação Linear Inteira para a aproximação linear proposta, a ser avaliada em instâncias de diferentes tamanhos. Posteriormente, será desenvolvida uma abordagem heurística capaz de avaliar diretamente diferentes configurações completas de elenco, permitindo comparar a qualidade das soluções e o custo computacional das abordagens.
