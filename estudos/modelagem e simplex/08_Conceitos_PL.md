@@ -1,174 +1,186 @@
 # Exercício 8 — Verdadeiro ou Falso
 
-Julgue as afirmações abaixo como verdadeiras (V) ou falsas (F).  
+Julgue as afirmações abaixo como verdadeiras (V) ou falsas (F).
+
 Caso haja afirmação(ões) falsa(s), apresente o(s) erro(s) e faça a(s) correção(ões).
 
 ## (a)
+
 Para um mesmo problema, podem existir mais de uma formulação matemática correta.
 
 **Resposta:**
+
 Verdadeiro.
 
 ---
 
 ## (b)
-Dadas as constantes \(n\) e \(c_i\), e as variáveis \(x_i \in \mathbb{R}\), com \(i = 1,\ldots,n\), a função
 
-\[
+Dadas as constantes $`n`$ e $`c_i`$, e as variáveis $`x_i \in \mathbb{R}`$, com $`i = 1,\ldots,n`$, a função
+
+```math
 x_1 \sum_{i=1}^{n} c_i x_i
-\]
+```
 
 é uma função linear.
 
 **Resposta:**
+
 Falso, pois, expandindo a somatória, temos:
 
-\[
+```math
 x_1 \sum_{i=1}^{n} c_i x_i
 =
 x_1c_1x_1 + x_1c_2x_2 + \cdots + x_1c_nx_n
-\]
+```
 
 ou seja,
 
-\[
+```math
 c_1x_1^2 + c_2x_1x_2 + \cdots + c_nx_1x_n.
-\]
+```
 
-Portanto, aparecem termos não lineares, como \(x_1^2\) e \(x_1x_2\).
+Portanto, aparecem termos não lineares, como $`x_1^2`$ e $`x_1x_2`$.
 
-Para que a função fosse linear, não poderia haver o fator \(x_1\) multiplicando a somatória.
+Para que a função fosse linear, não poderia haver o fator $`x_1`$ multiplicando a somatória.
 
 ---
 
 ## (c)
-Dados as constantes \(c_1\) e \(c_2\), e a variável \(x_1 \in \mathbb{R}\),
 
-\[
-c_1 c_2 x_1
-\]
+Dadas as constantes $`c_1`$ e $`c_2`$, e a variável $`x_1 \in \mathbb{R}`$,
+
+```math
+c_1c_2x_1
+```
 
 é uma função linear.
 
 **Resposta:**
+
 Verdadeiro.
 
 ---
 
 ## (d)
+
 Em um PL (programa linear), podemos restringir uma variável a ser não-negativa.
 
 **Resposta:**
+
 Verdadeiro. Uma variável pode ser restringida por
 
-\[
+```math
 x \geq 0.
-\]
+```
 
 ---
 
 ## (e)
+
 Em um PL, podemos restringir uma variável a ser não-positiva.
 
 **Resposta:**
+
 Verdadeiro.
 
 ---
 
 ## (f)
+
 PLs na forma padrão só admitem variáveis não-negativas.
 
 **Resposta:**
+
 Verdadeiro.
 
 ---
 
 ## (g)
-Uma variável \(x\) em um PL pode ser
 
-\[
+Uma variável $`x`$ em um PL pode ser
+
+```math
 x \geq -1
-\]
+```
 
 ou
 
-\[
+```math
 x \leq 1.
-\]
+```
 
 **Resposta:**
+
 Verdadeiro.
 
 ---
 
 ## (h)
-Uma variável \(x\) em um PL pode ser
 
-\[
+Uma variável $`x`$ em um PL pode ser
+
+```math
 x \geq -1
-\]
+```
 
 e
 
-\[
+```math
 x \leq 1.
-\]
+```
 
 **Resposta:**
-Verdadeiro.
+
+Verdadeiro. Nesse caso,
+
+```math
+-1 \leq x \leq 1.
+```
 
 ---
 
 ## (i)
-Restrições do tipo
 
-\[
-<
-\]
-
-e
-
-\[
->
-\]
-
-são admitidas em um PL.
+Restrições do tipo $`<`$ e $`>`$ são admitidas em um PL.
 
 **Resposta:**
+
 Falso. Em Programação Linear são utilizadas restrições dos tipos
 
-\[
+```math
 \leq,\quad \geq,\quad =
-\]
+```
 
 e não desigualdades estritas.
-
 
 ---
 
 ## (j)
+
 Regiões factíveis ilimitadas não admitem solução ótima única.
 
 **Resposta:**
+
 Falso, pois uma região factível ilimitada não significa que a função objetivo seja ilimitada.
 
 Por exemplo:
 
-\[
-\min x_1+x_2
-\]
+```math
+\min \; x_1 + x_2
+```
 
 sujeito a
 
-\[
-x_1,x_2 \geq 0.
-\]
+```math
+x_1, x_2 \geq 0.
+```
 
 A região factível é ilimitada, mas existe uma solução ótima única em
 
-\[
+```math
 (x_1,x_2)=(0,0).
-\]
+```
 
 ---
 
