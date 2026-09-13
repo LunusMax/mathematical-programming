@@ -4,9 +4,12 @@ Descreva as ideias por trás do Método Simplex. Em que se baseia este método? 
 
 ```math
 S = \{x \in \mathbb{R}^n;\; Ax = b,\; x \geq 0\}
+```
+
+seja convexa é importante para o bom funcionamento do método?
 
 **Resposta:**
 
-Uma solução básica factível é candidata à solução ótima porque ela corresponde a um vértice da região factível. Em um problema linear, se existir uma solução ótima finita, então existe pelo menos uma solução ótima em um vértice da região factível.
+O Método Simplex é um algoritmo que percorre os vértices da região factível, passando de uma solução básica factível para outra que melhora a função objetivo.
 
-Por isso, o Método Simplex busca a solução ótima percorrendo soluções básicas factíveis.
+A convexidade é importante, pois garante que, se existir uma solução ótima finita, existe pelo menos uma solução ótima em um vértice da região factível. Dessa forma, o Simplex pode buscar a solução ótima percorrendo os vértices da região factível.
