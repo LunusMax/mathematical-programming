@@ -188,6 +188,7 @@ A região factível é ilimitada, mas existe uma solução ótima única em
 Em uma dada iteração do Simplex em Tabelas, se constatarmos que a solução do problema é ilimitada, então pelo menos uma das variáveis não-básicas com custo relativo menor que zero terá sua coluna composta por elementos nulos ou negativos.
 
 **Resposta:**
+Verdadeiro.
 
 ---
 
@@ -195,6 +196,7 @@ Em uma dada iteração do Simplex em Tabelas, se constatarmos que a solução do
 Caso o critério de otimalidade do Simplex for alcançado, se obtivermos ao menos uma variável não-básica com custo relativo igual a zero, podemos afirmar que temos múltiplas soluções ótimas.
 
 **Resposta:**
+Falso, pois custo relativo igual a zero não garante a existência de múltiplas soluções ótimas.
 
 ---
 
@@ -202,6 +204,7 @@ Caso o critério de otimalidade do Simplex for alcançado, se obtivermos ao meno
 Se a região factível possui um vértice, então o problema possui solução ótima.
 
 **Resposta:**
+Falso. A existência de um vértice não garante a existência de uma solução ótima, pois a função objetivo pode melhorar indefinidamente em uma região factível ilimitada.
 
 ---
 
@@ -209,6 +212,7 @@ Se a região factível possui um vértice, então o problema possui solução ó
 De um modo geral, um problema artificial possui múltiplas soluções ótimas.
 
 **Resposta:**
+Falso.
 
 ---
 
@@ -216,6 +220,7 @@ De um modo geral, um problema artificial possui múltiplas soluções ótimas.
 Se um PL tem infinitas soluções ótimas, então seu problema artificial possui solução diferente de zero.
 
 **Resposta:**
+Falso.
 
 ---
 
@@ -223,6 +228,7 @@ Se um PL tem infinitas soluções ótimas, então seu problema artificial possui
 Toda solução factível é básica.
 
 **Resposta:**
+Falso.
 
 ---
 
@@ -230,6 +236,7 @@ Toda solução factível é básica.
 Toda solução básica é factível.
 
 **Resposta:**
+Falso.
 
 ---
 
@@ -237,6 +244,7 @@ Toda solução básica é factível.
 Se um problema possui solução ótima, então existe um vértice ótimo.
 
 **Resposta:**
+Verdadeiro.
 
 ---
 
@@ -244,13 +252,7 @@ Se um problema possui solução ótima, então existe um vértice ótimo.
 Existe uma regra de pivoteamento tal que o método Simplex é um algoritmo polinomial para resolver PLs.
 
 **Resposta:**
-
----
-
-## (t)
-Na regra de Bland a ordem das variáveis não é importante, desde que ela seja fixa.
-
-**Resposta:**
+Falso.
 
 ---
 
@@ -258,3 +260,4 @@ Na regra de Bland a ordem das variáveis não é importante, desde que ela seja 
 Se o método Simplex entra num ciclo, então uma solução básica degenerada se repete.
 
 **Resposta:**
+Verdadeiro.
