@@ -212,7 +212,7 @@ Falso. A existência de um vértice não garante a existência de uma solução 
 De um modo geral, um problema artificial possui múltiplas soluções ótimas.
 
 **Resposta:**
-Falso.
+Falso. Um problema artificial pode possuir solução ótima única ou múltiplas soluções ótimas; não é possível afirmar, de modo geral, que sempre haverá multiplicidade.
 
 ---
 
@@ -220,7 +220,7 @@ Falso.
 Se um PL tem infinitas soluções ótimas, então seu problema artificial possui solução diferente de zero.
 
 **Resposta:**
-Falso.
+Falso. Se o problema original possui soluções ótimas, então ele é factível. Portanto, no Método das Duas Fases, o valor ótimo do problema artificial deve ser igual a zero.
 
 ---
 
@@ -228,7 +228,7 @@ Falso.
 Toda solução factível é básica.
 
 **Resposta:**
-Falso.
+Falso. Uma solução factível satisfaz todas as restrições do problema, mas não precisa ser uma solução básica. Geometricamente, existem pontos factíveis que não são vértices da região factível.
 
 ---
 
@@ -236,7 +236,7 @@ Falso.
 Toda solução básica é factível.
 
 **Resposta:**
-Falso.
+Falso. Uma solução básica pode possuir alguma variável básica negativa. Ela só será uma solução básica factível se também satisfizer as condições de factibilidade, em particular a não-negatividade das variáveis.
 
 ---
 
@@ -252,7 +252,7 @@ Verdadeiro.
 Existe uma regra de pivoteamento tal que o método Simplex é um algoritmo polinomial para resolver PLs.
 
 **Resposta:**
-Falso.
+Falso. Não é conhecida uma regra de pivoteamento do Método Simplex que garanta um número polinomial de iterações para todo problema de Programação Linear.
 
 ---
 
@@ -261,3 +261,12 @@ Se o método Simplex entra num ciclo, então uma solução básica degenerada se
 
 **Resposta:**
 Verdadeiro.
+
+
+## Exercício 9
+
+Por quê uma solução básica factível é candidata a ser a solução ótima de um problema linear?
+
+**Resposta:**
+
+Uma solução básica factível é candidata à solução ótima porque ela corresponde a um vértice da região factível. Em um problema linear, se existir uma solução ótima finita, então existe pelo menos uma solução ótima em um vértice da região factível. Por isso, o Método Simplex busca a solução ótima percorrendo soluções básicas factíveis.
