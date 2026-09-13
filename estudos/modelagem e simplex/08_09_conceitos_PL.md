@@ -262,11 +262,14 @@ Se o método Simplex entra num ciclo, então uma solução básica degenerada se
 **Resposta:**
 Verdadeiro.
 
+---
 
-## Exercício 9
+# Exercício 9
 
 Por quê uma solução básica factível é candidata a ser a solução ótima de um problema linear?
 
 **Resposta:**
 
-Uma solução básica factível é candidata à solução ótima porque ela corresponde a um vértice da região factível. Em um problema linear, se existir uma solução ótima finita, então existe pelo menos uma solução ótima em um vértice da região factível. Por isso, o Método Simplex busca a solução ótima percorrendo soluções básicas factíveis.
+Uma solução básica factível é candidata à solução ótima porque ela corresponde a um vértice da região factível. Em um problema linear, se existir uma solução ótima finita, então existe pelo menos uma solução ótima em um vértice da região factível.
+
+Por isso, o Método Simplex busca a solução ótima percorrendo soluções básicas factíveis.
