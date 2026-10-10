@@ -31,49 +31,30 @@
 
 \maketitle
 
-\section*{Proposta}
+\section*{Introdução}
 
-A composição do elenco constitui uma decisão relevante para o desempenho competitivo e financeiro dos clubes, envolvendo a seleção de jogadores sob restrições orçamentárias, regulatórias e de composição da equipe \parencite{pantuso2017}. Uma dificuldade desse processo é que a contribuição de um jogador não depende apenas de seu desempenho individual, mas também de sua compatibilidade com os demais jogadores que compõem a equipe \parencite{jarvandi2013}. Dessa forma, um mesmo atleta pode representar ganhos diferentes quando inserido em equipes distintas.
+\section{Introdução}
 
-Este trabalho propõe formular o problema de contratação de jogadores como um problema de otimização combinatória, no qual se busca selecionar um conjunto de contratações que maximize o ganho esperado de desempenho de uma equipe. Abordagens recentes têm utilizado programação inteira para apoiar a composição de elencos considerando simultaneamente aspectos esportivos, táticos e financeiros \parencite{dantas2025}. Em vez de considerar exclusivamente rankings ou atributos individuais, pretende-se avaliar o impacto da contratação sobre o desempenho previsto do elenco resultante.
+\section{Introdução}
 
-\section*{Fonte de Dados}
+A composição de elencos no futebol profissional constitui um problema de tomada de decisão que envolve a seleção de jogadores sob restrições financeiras, esportivas e estruturais \parencite{pantuso2017}. A escolha de novos atletas não depende exclusivamente de suas características individuais, mas também de sua compatibilidade com os demais integrantes da equipe e de sua contribuição potencial para o desempenho coletivo \parencite{jarvandi2013}. Nesse contexto, técnicas de Programação Matemática têm sido empregadas para representar o problema de composição de elencos, permitindo identificar combinações de jogadores que maximizem determinados critérios de desempenho, respeitando restrições orçamentárias, posicionais e regulatórias \parencite{pantuso2017,dantas2025}.
 
-Os dados utilizados serão provenientes principalmente do \textit{FBref}, contendo estatísticas de jogadores e equipes da \textit{Premier League} e da \textit{Serie A}, considerando as temporadas de 2019--2020 a 2023--2024.
+A integração entre modelos preditivos e técnicas de otimização possibilita avaliar contratações não apenas por indicadores individuais, mas também por seus efeitos estimados sobre o desempenho de uma equipe. Nessa perspectiva, \textcite{nunes2026} desenvolveu uma metodologia que utiliza estatísticas individuais de jogadores para prever a pontuação de clubes ao longo de uma temporada, empregando posteriormente essas previsões como função objetivo de algoritmos de otimização. Como continuidade dessa abordagem, o presente trabalho propõe investigar uma formulação de Programação Linear Inteira (PLI) baseada em ganhos previamente estimados para possíveis substituições de jogadores, permitindo a aplicação e comparação de diferentes métodos de resolução.
 
-A base contém atributos relacionados ao desempenho individual dos jogadores e foi previamente estruturada para representar a composição dos elencos e permitir a estimativa do desempenho coletivo das equipes.
+A base de dados utilizada é proveniente do FBref, plataforma que disponibiliza estatísticas históricas de jogadores e equipes de futebol \parencite{fbref}. Os dados foram coletados e estruturados por \textcite{nunes2026}, abrangendo cinco temporadas, de 2019--2020 a 2023--2024, da Premier League inglesa e da Serie A italiana. O conjunto contempla indicadores de participação, características individuais e estatísticas de desempenho ofensivo e defensivo dos atletas. Além disso, a metodologia original incorpora uma função sintética de valor de mercado baseada na idade e em indicadores estatísticos dos jogadores, permitindo representar restrições orçamentárias mesmo na ausência de valores reais de transferência para todos os atletas \parencite{nunes2026}. A consideração de características individuais e de desempenho na estimativa de custos encontra respaldo em estudos sobre os determinantes econômicos das transferências no futebol profissional \parencite{dobson1999}.
 
-\section*{Modelagem Proposta}
+Entretanto, a aplicação de modelos de otimização depende não apenas da disponibilidade dos dados, mas também de sua qualidade, consistência e adequação às variáveis e restrições do problema. A necessidade de organização, integração e pré-processamento das estatísticas individuais dos jogadores é evidenciada na metodologia desenvolvida por \textcite{nunes2026}. No contexto da composição de elencos, aspectos como a quantidade de jogadores elegíveis, a disponibilidade de atributos estatísticos, a definição de candidatos e vagas e a distribuição dos custos de contratação influenciam a construção das instâncias de otimização e a definição de suas restrições \parencite{pantuso2017,dantas2025}. Dessa forma, torna-se necessário caracterizar a base de dados e examinar suas condições de utilização antes da implementação da formulação matemática.
 
-Para cada candidato a contratação, será estimado seu impacto sobre uma determinada equipe a partir da diferença entre o desempenho previsto antes e depois de sua inclusão no elenco.
+Assim, esta etapa do trabalho tem como objetivo realizar uma análise exploratória dos dados previamente coletados e estruturados por \textcite{nunes2026}, contemplando a caracterização da base, a avaliação de sua qualidade e o dimensionamento das instâncias de otimização. Busca-se identificar possíveis limitações, examinar a disponibilidade das informações necessárias e avaliar sua adequação à construção de cenários de contratação sob restrições orçamentárias e estruturais. Os resultados dessa análise servirão de fundamento para as etapas posteriores de formulação matemática, desenvolvimento de métodos heurísticos e comparação experimental das abordagens de resolução.
 
-Seja $g_{ij}$ o ganho associado à contratação do jogador $i$ para ocupar a vaga ou substituir o jogador $j$. Define-se a variável binária:
+\section*{Caracterização da Base de Dados}
 
-\[
-x_{ij} =
-\begin{cases}
-1, & \text{se o jogador $i$ for selecionado para a vaga $j$},\\
-0, & \text{caso contrário}.
-\end{cases}
-\]
+\section*{Pré-processamento e Qualidade dos Dados}
 
-Como aproximação linear do problema contextual, será considerado inicialmente um ganho $g_{ij}$ previamente estimado para cada possível substituição. Assim, uma formulação inicial considera a função objetivo:
+\section*{Construção das Instâncias de Otimização}
 
-\[
-\max \sum_i \sum_j g_{ij} x_{ij}.
-\]
+\section*{Análise de Viabilidade}
 
-O modelo deverá considerar restrições relacionadas ao número máximo de contratações, à unicidade na seleção dos jogadores, à composição do elenco por posição e ao orçamento disponível. Como a base utilizada não dispõe de valores reais de transferência para todos os atletas, será empregada uma função sintética de valor de mercado, previamente desenvolvida, que associa a cada jogador um custo estimado principalmente a partir de sua idade e de seus indicadores estatísticos de desempenho recente. Essa escolha é coerente com a literatura econômica do futebol, que identifica fatores como idade e desempenho passado entre os determinantes do valor de mercado dos atletas \parencite{dobson1999,pantuso2017}.
-
-A restrição financeira poderá ser expressa por
-
-\[
-\sum_i \sum_j c_i x_{ij} \leq B,
-\]
-em que $c_i$ representa o valor de mercado sintético associado ao jogador $i$ e $B$ representa o orçamento disponível para contratações. Os valores sintéticos serão utilizados exclusivamente como uma aproximação consistente dos custos relativos entre os jogadores, não tendo a pretensão de reproduzir valores reais de transferência.
-
-Inicialmente será desenvolvida uma formulação exata por Programação Linear Inteira para a aproximação linear proposta, a ser avaliada em instâncias de diferentes tamanhos. Posteriormente, será desenvolvida uma abordagem heurística capaz de avaliar diretamente diferentes configurações completas de elenco, permitindo comparar a qualidade das soluções e o custo computacional das abordagens.
-
-Espera-se, dessa forma, obter recomendações de contratação que considerem não apenas a qualidade individual dos jogadores, mas principalmente sua contribuição prevista dentro do contexto específico de cada elenco.
+\section*{Conclusão}
 
 \end{document}
