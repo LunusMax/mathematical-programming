@@ -53,3 +53,6 @@ Thumbs.db
 *.bak
 *.swp
 *.swo
+
+# Datasets
+data/
