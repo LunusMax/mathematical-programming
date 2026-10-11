@@ -61,11 +61,67 @@ Para a representação dos elencos no modelo preditivo, \textcite{nunes2026} sel
 
 No contexto do presente trabalho, a base será utilizada para identificar equipes de referência, selecionar jogadores candidatos e construir instâncias do problema de otimização de contratações. As informações individuais permitirão caracterizar os atletas e calcular os custos sintéticos de contratação, enquanto o modelo preditivo previamente desenvolvido poderá ser empregado para estimar os ganhos associados às substituições consideradas. A definição efetiva das instâncias dependerá da aplicação de critérios de elegibilidade e da disponibilidade dos atributos necessários, aspectos que serão examinados nas etapas seguintes da análise exploratória.
 
-\section*{Pré-processamento e Qualidade dos Dados}
+\section{Análise da Qualidade dos Dados}
 
-\section*{Construção das Instâncias de Otimização}
+A qualidade dos dados constitui um aspecto fundamental para a construção de instâncias de otimização, uma vez que informações incompletas, inconsistentes ou redundantes podem comprometer a definição dos parâmetros utilizados na formulação matemática. A base empregada neste trabalho passou por procedimentos prévios de integração, organização e pré-processamento, conforme descrito por \textcite{nunes2026}. Nesta etapa, foi realizada uma análise complementar para verificar a completude e a unicidade dos registros disponíveis para a construção dos elencos de referência.
 
-\section*{Análise de Viabilidade}
+\subsection{Completude e Unicidade dos Registros}
+
+A análise considerou os 6.661 registros de jogadores pertencentes às 200 combinações de equipe e temporada identificadas nas duas competições entre 2019--2020 e 2023--2024. Cada registro contém 47 atributos, além da coluna de identificação do jogador. A verificação de completude foi realizada por meio da biblioteca Pandas, considerando tanto valores nulos quanto campos contendo apenas strings vazias ou espaços em branco.
+
+Os resultados não identificaram valores ausentes em nenhuma das 48 colunas originais. Adicionalmente, foi realizada uma verificação de duplicidade considerando a combinação de liga, temporada, equipe e nome do jogador. Não foram identificados registros duplicados segundo esse critério. A Tabela~\ref{tab:qualidade_dados} apresenta um resumo dos resultados obtidos.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Resultados da análise de completude e unicidade dos dados}
+    \label{tab:qualidade_dados}
+    \begin{tabular}{lr}
+        \hline
+        \textbf{Indicador} & \textbf{Resultado} \\
+        \hline
+        Registros analisados & 6.661 \\
+        Colunas originais & 48 \\
+        Atributos por registro & 47 \\
+        Valores ausentes & 0 \\
+        Atributos com valores ausentes & 0 \\
+        Registros duplicados & 0 \\
+        \hline
+    \end{tabular}
+    \par\smallskip
+    \footnotesize Fonte: Elaborado pelo autor.
+\end{table}
+
+Os resultados indicam que o conjunto de dados analisado apresenta completude integral nos atributos considerados e ausência de duplicações segundo a chave de identificação adotada. Essas características favorecem a utilização da base na construção das instâncias de otimização, reduzindo a necessidade de procedimentos adicionais de imputação de valores ausentes ou remoção de registros duplicados. Entretanto, a ausência desses problemas não garante, isoladamente, a consistência dos valores armazenados, sendo necessária a verificação complementar dos tipos de dados e dos intervalos admissíveis para os atributos estatísticos.
+
+\subsection{Consistência dos Atributos}
+
+Além da análise de completude e unicidade, foi realizada uma verificação da consistência dos atributos numéricos presentes na base de dados. Foram examinadas a presença de valores não numéricos em campos estatísticos, a ocorrência de valores negativos, a validade das idades registradas e a adequação dos percentuais de sucesso em desarmes ao intervalo de 0 a 100. Também foram avaliadas relações entre atributos, verificando se o número de partidas iniciadas como titular não excedia o total de partidas disputadas e se os indicadores agregados de gols e assistências (G+A) e de desarmes e interceptações (Tkl+Int) correspondiam à soma de seus respectivos componentes.
+
+A análise foi realizada sobre os 6.661 registros pertencentes aos 200 elencos de referência. Nenhuma ocorrência de inconsistência foi identificada nas sete verificações realizadas, conforme apresentado na Tabela~\ref{tab:consistencia_dados}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Resultados da análise de consistência dos atributos}
+    \label{tab:consistencia_dados}
+    \begin{tabular}{lr}
+        \hline
+        \textbf{Verificação} & \textbf{Ocorrências} \\
+        \hline
+        Valores não numéricos & 0 \\
+        Valores negativos & 0 \\
+        Idades inválidas & 0 \\
+        Percentuais fora do intervalo de 0 a 100 & 0 \\
+        Titularidades superiores às partidas disputadas & 0 \\
+        Inconsistências em G+A & 0 \\
+        Inconsistências em Tkl+Int & 0 \\
+        \hline
+    \end{tabular}
+    \par\smallskip
+    \footnotesize Fonte: Elaborado pelo autor.
+\end{table}
+
+Os resultados indicam que a base apresenta consistência em relação às regras numéricas e estatísticas avaliadas. Em conjunto com a ausência de valores ausentes e registros duplicados identificada anteriormente, essas evidências demonstram que os dados possuem condições favoráveis para a construção das instâncias de otimização, sem necessidade de tratamentos corretivos adicionais para os problemas investigados. Ressalta-se, entretanto, que essas verificações não eliminam a possibilidade de outras inconsistências semânticas ou limitações inerentes à coleta de dados esportivos.
+
 
 \section*{Conclusão}
 
