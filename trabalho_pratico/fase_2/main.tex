@@ -122,6 +122,78 @@ A análise foi realizada sobre os 6.661 registros pertencentes aos 200 elencos d
 
 Os resultados indicam que a base apresenta consistência em relação às regras numéricas e estatísticas avaliadas. Em conjunto com a ausência de valores ausentes e registros duplicados identificada anteriormente, essas evidências demonstram que os dados possuem condições favoráveis para a construção das instâncias de otimização, sem necessidade de tratamentos corretivos adicionais para os problemas investigados. Ressalta-se, entretanto, que essas verificações não eliminam a possibilidade de outras inconsistências semânticas ou limitações inerentes à coleta de dados esportivos.
 
+\section{Dimensionamento das Instâncias de Otimização}
+
+O dimensionamento das instâncias de otimização foi realizado a partir dos registros históricos de jogadores disponíveis nas duas competições analisadas. Seguindo a metodologia temporal adotada por \textcite{nunes2026}, os dados individuais referentes à temporada $t-1$ foram considerados para a construção dos cenários de contratação da temporada $t$. Essa abordagem permite utilizar informações anteriores ao período de avaliação, preservando a relação temporal entre os dados disponíveis e as decisões de composição dos elencos.
+
+Inicialmente, foi analisada a quantidade de jogadores disponíveis nas temporadas históricas de 2018--2019 a 2022--2023, utilizadas como referência para os cinco períodos de avaliação. A Tabela~\ref{tab:universo_candidatos} apresenta a quantidade de registros e de nomes distintos identificados em cada temporada. A distinção entre essas medidas é necessária porque um mesmo atleta pode apresentar registros associados a diferentes clubes, enquanto a identificação por nome não garante, isoladamente, a individualização de todos os jogadores.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Dimensionamento inicial do universo de candidatos por temporada}
+    \label{tab:universo_candidatos}
+    \begin{tabular}{lrr}
+        \hline
+        \textbf{Temporada-alvo} & \textbf{Registros históricos} & \textbf{Nomes distintos} \\
+        \hline
+        2019--2020 & 1.287 & 1.246 \\
+        2020--2021 & 1.382 & 1.311 \\
+        2021--2022 & 1.613 & 1.545 \\
+        2022--2023 & 1.557 & 1.487 \\
+        2023--2024 & 1.529 & 1.456 \\
+        \hline
+    \end{tabular}
+    \par\smallskip
+    \footnotesize Fonte: Elaborado pelo autor.
+\end{table}
+
+Para investigar o dimensionamento das variáveis de decisão, foi selecionado como cenário experimental o Napoli, considerando a temporada-alvo de 2021--2022 e os dados históricos de 2020--2021. O clube apresentou 32 registros de jogadores na temporada de referência, dos quais foram selecionados os 20 atletas com maior minutagem, seguindo o procedimento utilizado por \textcite{nunes2026}. Após a exclusão dos jogadores pertencentes ao clube e a deduplicação dos candidatos externos pelo nome, foi obtido um conjunto de 1.513 candidatos potenciais, sendo 528 provenientes da Premier League e 985 da Serie A.
+
+A formulação proposta considera variáveis binárias $x_{ij}$, que indicam a seleção do candidato $i$ para ocupar a vaga $j$ no elenco. Para uma instância com $n$ candidatos e $m$ vagas, o número máximo de variáveis binárias corresponde a $n \times m$, quando todas as combinações candidato--vaga são admitidas. Entretanto, a consideração de restrições posicionais permite eliminar antecipadamente combinações incompatíveis, reduzindo a quantidade de variáveis de decisão necessárias.
+
+Para avaliar esse efeito, foram construídas instâncias experimentais com 20, 50, 100, 200, 500 e 1.000 candidatos, considerando cenários com três e cinco vagas disponíveis. Os candidatos foram ordenados pela minutagem histórica, enquanto as vagas corresponderam aos jogadores de menor minutagem entre os 20 integrantes do elenco de referência. A compatibilidade posicional foi estabelecida pela existência de pelo menos uma posição em comum entre o candidato e o jogador a ser substituído. A Tabela~\ref{tab:dimensionamento_variaveis} apresenta os resultados obtidos.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Dimensionamento das variáveis binárias considerando compatibilidade posicional}
+    \label{tab:dimensionamento_variaveis}
+    \begin{tabular}{rrrrr}
+        \hline
+        \textbf{Candidatos} & \textbf{Vagas} & \textbf{Teóricas} & \textbf{Compatíveis} & \textbf{Redução (\%)} \\
+        \hline
+        20    & 3 & 60    & 12    & 80,00 \\
+        20    & 5 & 100   & 26    & 74,00 \\
+        50    & 3 & 150   & 33    & 78,00 \\
+        50    & 5 & 250   & 71    & 71,60 \\
+        100   & 3 & 300   & 91    & 69,67 \\
+        100   & 5 & 500   & 157   & 68,60 \\
+        200   & 3 & 600   & 212   & 64,67 \\
+        200   & 5 & 1.000 & 329   & 67,10 \\
+        500   & 3 & 1.500 & 606   & 59,60 \\
+        500   & 5 & 2.500 & 871   & 65,16 \\
+        1.000 & 3 & 3.000 & 1.297 & 56,77 \\
+        1.000 & 5 & 5.000 & 1.776 & 64,48 \\
+        \hline
+    \end{tabular}
+    \par\smallskip
+    \footnotesize Fonte: Elaborado pelo autor.
+\end{table}
+
+Os resultados demonstram que a aplicação do critério de compatibilidade posicional proporcionou reduções expressivas na quantidade de pares candidato--vaga admissíveis. Na maior instância considerada, composta por 1.000 candidatos e cinco vagas, o número de variáveis binárias potenciais foi reduzido de 5.000 para 1.776, correspondendo a uma redução de 64,48\%. Nas demais configurações, os percentuais de redução variaram entre 56,77\% e 80,00\%, evidenciando o impacto da filtragem posicional sobre o dimensionamento inicial do problema.
+
+Cabe destacar que os resultados apresentados representam estimativas do tamanho da formulação a partir dos pares posicionais admissíveis, não constituindo ainda uma avaliação de desempenho computacional de um modelo PLI implementado. Além disso, a existência de candidatos compatíveis não garante necessariamente o preenchimento simultâneo de todas as vagas, especialmente quando são consideradas restrições de unicidade e orçamento. Essas condições serão examinadas na análise de viabilidade das instâncias, permitindo identificar configurações adequadas para os experimentos posteriores com métodos exatos e heurísticos.
+
+\section{Análise de Viabilidade das Instâncias}
+
+\subsection{Viabilidade Posicional}
+
+A viabilidade das instâncias propostas foi inicialmente avaliada considerando as restrições de compatibilidade posicional e unicidade na seleção dos jogadores. Para isso, o problema foi representado por meio de um grafo bipartido, no qual um conjunto de vértices corresponde aos candidatos disponíveis e o outro às vagas a serem preenchidas. Uma aresta conecta um candidato a uma vaga quando existe compatibilidade entre suas posições de atuação. A partir dessa representação, foi utilizado um algoritmo de emparelhamento máximo para verificar a possibilidade de preencher simultaneamente todas as vagas com jogadores distintos.
+
+Foram avaliadas as 12 configurações experimentais anteriormente definidas, considerando conjuntos de 20, 50, 100, 200, 500 e 1.000 candidatos, combinados com três e cinco vagas. Os resultados demonstraram que todas as instâncias apresentaram emparelhamentos completos, sendo possível atribuir jogadores distintos a todas as vagas respeitando a compatibilidade posicional estabelecida.
+
+Embora todas as instâncias tenham apresentado viabilidade posicional, observou-se uma diferença na quantidade de alternativas disponíveis para cada vaga. Nas configurações com 20 candidatos, determinadas vagas apresentaram apenas uma opção compatível. Em contrapartida, nas instâncias com 1.000 candidatos, o número mínimo de alternativas por vaga alcançou 300 no cenário com três vagas e 72 no cenário com cinco vagas. Esses resultados indicam que o aumento do conjunto de candidatos amplia as possibilidades de seleção, embora a distribuição das posições entre os jogadores continue influenciando a estrutura das instâncias.
+
+A viabilidade posicional constatada demonstra que os conjuntos de candidatos são suficientes para preencher as vagas consideradas, respeitando as restrições de atribuição individual. Entretanto, essa condição não garante a viabilidade completa do problema de otimização, uma vez que ainda devem ser consideradas as limitações orçamentárias associadas aos custos de contratação. Dessa forma, torna-se necessária uma análise complementar para verificar a existência de combinações de jogadores que atendam simultaneamente às restrições posicionais e financeiras.
 
 \section*{Conclusão}
 
