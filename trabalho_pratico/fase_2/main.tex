@@ -86,7 +86,7 @@ Nenhuma inconsistência foi identificada nas verificações realizadas, indicand
 
 \section{Dimensionamento das Instâncias de Otimização}
 
-O dimensionamento das instâncias considerou as estatísticas dos jogadores na temporada $t-1$ para a construção dos cenários de contratação da temporada $t$, seguindo a abordagem temporal de \textcite{nunes2026}. Foram analisados os registros históricos de 2018--2019 a 2022--2023, cujas quantidades de registros e nomes distintos são apresentadas na Tabela~\ref{tab:universo_candidatos}. A distinção entre essas medidas decorre da possibilidade de um mesmo jogador possuir registros em diferentes clubes, embora a identificação por nome não garanta a individualização dos atletas.
+O dimensionamento das instâncias considerou as estatísticas dos jogadores na temporada $t-1$ para a construção dos cenários de contratação da temporada $t$, seguindo a abordagem temporal de \textcite{nunes2026}. Assim, para as temporadas-alvo de 2019--2020 a 2023--2024, foram utilizados os registros históricos de 2018--2019 a 2022--2023, respectivamente. A Tabela~\ref{tab:universo_candidatos} apresenta a quantidade de registros e nomes distintos disponíveis em cada período, considerando que um mesmo jogador pode possuir registros em diferentes clubes.
 
 \begin{table}[htbp]
     \centering
@@ -181,5 +181,7 @@ A análise identificou ainda 16 jogadores com custo sintético nulo, todos com i
 A análise exploratória permitiu avaliar a qualidade dos dados e a viabilidade das instâncias propostas para o problema de otimização de contratações de jogadores de futebol. Foram identificados 200 elencos de referência, totalizando 6.661 registros, sem ocorrência de valores ausentes, duplicações ou inconsistências nas verificações realizadas. A aplicação de critérios de compatibilidade posicional reduziu significativamente o número potencial de variáveis binárias, e todas as 12 instâncias experimentais apresentaram viabilidade posicional.
 
 A incorporação das restrições orçamentárias, entretanto, resultou em apenas dez cenários viáveis entre os 36 avaliados, evidenciando a influência dos custos e da quantidade de candidatos sobre a existência de soluções admissíveis. Apesar das limitações associadas à utilização de custos sintéticos, os resultados indicam que a base apresenta condições adequadas para a construção das instâncias de otimização. Como continuidade, serão implementados a formulação de Programação Linear Inteira e os métodos heurísticos, permitindo comparar a qualidade das soluções e o desempenho computacional das diferentes abordagens.
+
+\printbibliography[title={Referências}]
 
 \end{document}
