@@ -195,6 +195,50 @@ Embora todas as instâncias tenham apresentado viabilidade posicional, observou-
 
 A viabilidade posicional constatada demonstra que os conjuntos de candidatos são suficientes para preencher as vagas consideradas, respeitando as restrições de atribuição individual. Entretanto, essa condição não garante a viabilidade completa do problema de otimização, uma vez que ainda devem ser consideradas as limitações orçamentárias associadas aos custos de contratação. Dessa forma, torna-se necessária uma análise complementar para verificar a existência de combinações de jogadores que atendam simultaneamente às restrições posicionais e financeiras.
 
+\subsection{Viabilidade Orçamentária}
+
+A análise de viabilidade orçamentária foi realizada a partir da função de valor de mercado sintético desenvolvida por \textcite{nunes2026}, que considera a idade dos jogadores e seus indicadores estatísticos de desempenho para estimar os custos de contratação. Essa abordagem permite incorporar restrições financeiras ao problema de otimização mesmo na ausência de valores reais de transferência para todos os atletas. Foram considerados três limites orçamentários, correspondentes a 30, 60 e 120 milhões de unidades monetárias sintéticas, aplicados às 12 instâncias experimentais anteriormente definidas.
+
+Para cada instância, buscou-se determinar o custo mínimo necessário para preencher simultaneamente todas as vagas disponíveis, respeitando as restrições de compatibilidade posicional e unicidade dos jogadores selecionados. O problema foi representado por meio de uma matriz de custos, na qual cada elemento corresponde ao valor sintético de contratação de um candidato para determinada vaga. As combinações posicionalmente incompatíveis foram consideradas inadmissíveis. A resolução foi realizada por meio do algoritmo de atribuição de custo mínimo disponibilizado pela biblioteca SciPy, permitindo verificar a existência de uma combinação de contratações cujo custo total não ultrapassasse o orçamento estabelecido.
+
+Os experimentos compreenderam 36 cenários, resultantes da combinação entre as 12 instâncias e os três limites orçamentários considerados. Conforme apresentado na Tabela~\ref{tab:viabilidade_orcamentaria}, dez cenários apresentaram soluções viáveis, enquanto os outros 26 não permitiram o preenchimento simultâneo de todas as vagas dentro dos respectivos orçamentos. No cenário de 30 milhões, apenas duas instâncias foram consideradas viáveis, resultado que se manteve para o orçamento de 60 milhões. Com a ampliação do limite financeiro para 120 milhões, o número de instâncias viáveis aumentou para seis.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Resultados da análise de viabilidade orçamentária}
+    \label{tab:viabilidade_orcamentaria}
+    \begin{tabular}{rrrr}
+        \hline
+        \textbf{Orçamento (milhões)} & \textbf{Instâncias} & \textbf{Viáveis} & \textbf{Inviáveis} \\
+        \hline
+        30  & 12 & 2 & 10 \\
+        60  & 12 & 2 & 10 \\
+        120 & 12 & 6 & 6 \\
+        \hline
+        \textbf{Total} & \textbf{36} & \textbf{10} & \textbf{26} \\
+        \hline
+    \end{tabular}
+    \par\smallskip
+    \footnotesize Fonte: Elaborado pelo autor.
+\end{table}
+
+Os resultados evidenciam que a viabilidade financeira está diretamente relacionada ao orçamento disponível e à composição do conjunto de candidatos. Para as instâncias com três vagas, o custo mínimo necessário para realizar as contratações foi reduzido de 148,59 milhões, no cenário com 20 candidatos, para 18,37 milhões, no cenário com 1.000 candidatos. Com cinco vagas, essa redução ocorreu de 234,72 milhões para 29,76 milhões. Esses resultados demonstram que a ampliação do conjunto de candidatos possibilita identificar combinações de menor custo, aumentando a flexibilidade das decisões de contratação. Entretanto, mesmo com orçamentos mais elevados, instâncias com conjuntos reduzidos de candidatos podem permanecer inviáveis devido às restrições simultâneas de compatibilidade posicional e custo.
+
+A análise da distribuição dos custos sintéticos identificou 16 candidatos com valor de contratação nulo, todos com idade igual ou superior a 30 anos e sem minutos disputados na temporada de referência. Esse comportamento decorre da própria formulação da função de custo e representa uma limitação de sua interpretação econômica. Entretanto, verificou-se que todos os candidatos incluídos nas 12 instâncias experimentais apresentaram minutagem positiva, de modo que os registros com custo nulo não influenciaram os resultados obtidos. Para aplicações posteriores, recomenda-se estabelecer explicitamente critérios mínimos de participação, evitando a seleção de atletas sem desempenho estatístico registrado.
+
+Dessa forma, a análise demonstrou que, embora todas as instâncias apresentem viabilidade posicional, a incorporação das restrições orçamentárias pode limitar significativamente o conjunto de soluções admissíveis. Os resultados fornecem subsídios para a definição dos tamanhos das instâncias e dos limites financeiros a serem utilizados nas etapas posteriores de modelagem e resolução do problema. Ressalta-se que os valores considerados possuem natureza sintética e não devem ser interpretados como estimativas reais de transferência, sendo utilizados exclusivamente para avaliar a viabilidade matemática das contratações sob diferentes condições experimentais.
+
 \section*{Conclusão}
+
+Este trabalho apresentou uma análise exploratória dos dados destinados à construção de instâncias de um problema de otimização de contratações de jogadores de futebol. A partir de informações históricas da Premier League inglesa e da Serie A italiana, foram examinadas a estrutura, a qualidade e a adequação da base de dados às restrições consideradas na formulação matemática proposta.
+
+A análise permitiu identificar 200 elencos de referência, distribuídos entre as duas competições e cinco temporadas, totalizando 6.661 registros de jogadores. As verificações realizadas não identificaram valores ausentes, duplicações segundo a chave de identificação adotada ou inconsistências nas regras numéricas e estatísticas avaliadas. Esses resultados indicam que a base apresenta condições favoráveis para a construção das instâncias de otimização, sem necessidade de procedimentos corretivos adicionais para os problemas investigados.
+
+O dimensionamento experimental demonstrou que a consideração da compatibilidade posicional permite reduzir significativamente a quantidade de variáveis binárias necessárias à representação das possíveis contratações. Nas 12 instâncias avaliadas, as reduções variaram entre 56,77\% e 80,00\% em relação ao número teórico de combinações candidato--vaga. Todas as instâncias apresentaram viabilidade posicional, demonstrando a possibilidade de preencher simultaneamente as vagas consideradas com jogadores distintos.
+
+Entretanto, a incorporação das restrições orçamentárias demonstrou que a viabilidade das contratações depende tanto dos recursos financeiros disponíveis quanto do tamanho e da composição do conjunto de candidatos. Dos 36 cenários avaliados, apenas dez apresentaram soluções capazes de atender simultaneamente às restrições posicionais, de unicidade e de orçamento. Observou-se, ainda, que a ampliação do conjunto de candidatos possibilitou identificar combinações de menor custo, evidenciando a importância do dimensionamento das instâncias para a obtenção de soluções admissíveis. Ressalta-se que os custos empregados possuem natureza sintética, não representando necessariamente os valores praticados no mercado de transferências.
+
+Conclui-se que a base de dados apresenta condições adequadas para o desenvolvimento das próximas etapas do trabalho, fornecendo informações suficientes para a construção de instâncias com diferentes dimensões e níveis de restrição. Como continuidade, pretende-se implementar a formulação de Programação Linear Inteira proposta, avaliar seu desempenho computacional por meio de métodos exatos e desenvolver abordagens heurísticas alternativas para comparação da qualidade das soluções e dos tempos de execução.
+
 
 \end{document}
